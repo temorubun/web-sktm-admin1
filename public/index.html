@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <img class="logo" id="logo" src="" alt="Logo Pemda">
+        <div>
+          <div class="title" id="title"></div>
+        </div>
+      </div>
+      <div class="pill" id="pill"></div>
+    </div>
+
+    <section class="card" role="region" aria-label="Layanan SKTM">
+      <header class="card-header">
+        <div class="hgroup" style="align-items: center; text-align: center;">
+          <div style="text-align: center; margin-bottom: 20px; width: 100%;">
+            <div id="kopHeader1" style="font-weight: bold; font-size: 16px; margin-bottom: 2px;"></div>
+            <div id="kopHeader2" style="font-weight: bold; font-size: 16px; margin-bottom: 2px;"></div>
+            <div id="kopHeader3" style="font-weight: bold; font-size: 16px; margin-bottom: 2px;"></div>
+            <div id="kopHeader4" style="font-size: 12px; margin-bottom: 1px;"></div>
+            <div id="kopHeader5" style="font-size: 12px; margin-bottom: 15px;"></div>
+            <div style="border-top: 2px solid #1f2937; width: 100%; margin: 10px 0;"></div>
+          </div>
+          <div class="h1" style="text-align: center; width: 100%;" id="suratHeader"></div>
+          <div class="h2" style="text-align: center; width: 100%;" id="nomorSuratHeader"></div>
+        </div>
+      </header>
+
+      <div class="grid">
+        <div class="panel">
+          <div class="stitle" id="stitle"></div>
+
+          <div class="ident" aria-label="Identitas Pemohon">
+            <div class="lab" id="labNama"></div><div class="sep"></div><div class="val" id="nama"></div>
+
+            <div class="lab" id="labNIK"></div><div class="sep"></div><div class="val mono" id="nik"></div>
+
+            <div class="lab" id="labTempatTglLahir"></div><div class="sep"></div><div class="val" id="ttl"></div>
+
+            <div class="lab" id="labAgama"></div><div class="sep"></div><div class="val" id="agama"></div>
+
+            <div class="lab" id="labJenisKelamin"></div><div class="sep"></div><div class="val" id="jenis_kelamin"></div>
+
+            <div class="lab" id="labStatusPerkawinan"></div><div class="sep"></div><div class="val" id="status_perkawinan"></div>
+
+            <div class="lab" id="labPekerjaan"></div><div class="sep"></div><div class="val" id="pekerjaan"></div>
+
+            <div class="lab" id="labAlamat"></div><div class="sep"></div><div class="val" id="alamat"></div>
+
+            <div class="lab" id="labKelurahan"></div><div class="sep"></div><div class="val" id="kelurahan"></div>
+
+            <div class="lab" id="labKecamatan"></div><div class="sep"></div><div class="val" id="kecamatan"></div>
+
+            <div class="lab" id="labKotaKab"></div><div class="sep"></div><div class="val" id="kota_kab"></div>
+
+            <div class="lab" id="labProvinsi"></div><div class="sep"></div><div class="val" id="provinsi"></div>
+          </div>
+
+          <div class="stitle" style="margin-top:16px" id="stitleFile"></div>
+          <div class="uploaded-files-container">
+            <div id="uploadedFilesList"><div class="no-files-message" id="noFilesMessage"></div></div>
+          </div>
+
+          <div class="stitle" style="margin-top: 16px;" id="stitleKeterangan"></div>
+          <div class="file-upload-container" style="margin-bottom: 16px; line-height: 1.6; font-size: 14px;">
+            <div id="keterangan1" style="margin-top: 12px; font-style: italic;"></div>
+            <ol style="margin: 16px 0; padding-left: 20px;">
+              <li id="keterangan2" style="margin-bottom: 12px;"></li>
+              <li id="keterangan3" style="margin-bottom: 12px;"></li>
+              <li id="keterangan4" style="margin-bottom: 12px;"></li>
+            </ol>
+            <div id="keterangan5" style="margin-top: 12px; font-style: italic;"></div>
+          </div>
+
+
+        </div>
+
+        <aside class="side">
+          <div class="stitle" id="stitleTindakan"></div>
+          <div class="actions">
+            <button class="btn primary" id="createSendBtn" onclick="confirmCreateAndSend()"></button>
+            <button class="btn danger" id="rejectBtn" onclick="showRejectModal()"></button>
+          </div>
+
+          <div class="stitle" style="margin-top:10px" id="stitleRingkasan"></div>
+          <div class="callout">
+            <div id="operator"></div>
+            <div id="tanggal"></div>
+            <div id="referensi"></div>
+            <div id="from"></div>
+          </div>
+        </aside>
+      </div>
+
+      <footer class="card-footer">
+        <div id="footer"></div>
+      </footer>
+    </section>
+  </div>
+
+  <div class="loading-overlay" id="loadingOverlay" aria-live="polite" aria-busy="true">
+    <div class="loading-box">
+      <div class="spinner" aria-hidden="true"></div>
+      <div class="loading-text" id="loadingText">Memuat data… Mohon menunggu.</div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" style="display: none;">
+    <div class="modal modal--info" id="modalBox" role="document">
+      <div class="modal-header">
+        <div class="modal-icon" id="modalIcon">ℹ️</div>
+        <div class="modal-title" id="modalTitle">Informasi</div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-message" id="modalMessage">Pesan…</div>
+      </div>
+      <div class="modal-actions" id="modalActions">
+        <button class="btn secondary" id="modalCancelBtn">Batal</button>
+        <button class="btn primary" id="modalConfirmBtn">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./script/app.js"></script>
+</body>
+</html>

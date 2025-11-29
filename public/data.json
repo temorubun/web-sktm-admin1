@@ -1,0 +1,218 @@
+[
+  {
+    "data_web": {
+      "user": {
+        "status": "terkirim",
+        "tanggal": "25 November 2025",
+        "nomor_surat": "400.2.1/026/DW/2025",
+        "id": {
+          "json": "1LScZQxYaeeSIywCOxeO6gOcB5JmHMjXf",
+          "html": "1SsstSazrh2-TRubp02Wt47j5d72ASgBe",
+          "css": "15qAKevnOIK2sz-nZHBO3uP9UyUP6KCpO",
+          "javascript": "1gnhVc66T2gghH0cgwZUPxUabNiWs8qPx",
+          "folder": "1foLM-1qcq3aukgebDfFiNBVHi2jbSeXQ"
+        },
+        "data_surat": {
+          "kop": {
+            "pemerintah_kabupaten": "PEMERINTAH KABUPATEN MIMIKA",
+            "provinsi": "PAPUA TENGAH",
+            "distrik": "DISTRIK WANIA",
+            "alamat": "Jln. Cendrawasih SP4",
+            "kode_pos": "99910",
+            "email": "mimikawania@gmail.com"
+          },
+          "pemohon": {
+            "nama": "Syafruddin4435",
+            "nik": "910901078740007",
+            "ttl": "Ralla, 07-08-1974",
+            "agama": "Islam",
+            "jenis_kelamin": "Laki-Laki",
+            "status_perkawinan": "KAWIN",
+            "pekerjaan": "Petani/Pekebun",
+            "alamat": "Wania",
+            "kampung_kelurahan": "Nawaripi",
+            "nomor_rt": "10",
+            "kecamatan": "Wania",
+            "kota_kabupaten": "Mimika",
+            "provinsi": "Papua Tengah",
+            "nomor_hp": "6285230047347"
+          },
+          "perihal": "untuk administrasi kampus politeknik amamapare timika",
+          "dokumen": [
+            {
+              "nama": "KTP - Syafruddin",
+              "tipe": "image/jpeg",
+              "id": "1JJUFX1bEqDmt0_Qh-kfjM3Ynm17p00AU",
+              "size": "88330",
+              "view": "https://drive.google.com/file/d/1JJUFX1bEqDmt0_Qh-kfjM3Ynm17p00AU/view?usp=drivesdk",
+              "download": "https://drive.google.com/uc?id=1JJUFX1bEqDmt0_Qh-kfjM3Ynm17p00AU&export=download"
+            },
+            {
+              "nama": "Kartu Keluarga - Syafruddin",
+              "tipe": "image/jpeg",
+              "id": "1acIfBcH3Za7vPRpcum36INWQFjIEYNPw",
+              "size": "137745",
+              "view": "https://drive.google.com/file/d/1acIfBcH3Za7vPRpcum36INWQFjIEYNPw/view?usp=drivesdk",
+              "download": "https://drive.google.com/uc?id=1acIfBcH3Za7vPRpcum36INWQFjIEYNPw&export=download"
+            },
+            {
+              "nama": "Surat Pengantar RT - Syafruddin",
+              "tipe": "pdf",
+              "id": "1Y_kANnz8gjulF3nD8BK6UgjdRpz3G5jp8gFVBL4E3Zw",
+              "size": "187745",
+              "view": "https://drive.google.com/file/d/1Y_kANnz8gjulF3nD8BK6UgjdRpz3G5jp8gFVBL4E3Zw/view?usp=drivesdk",
+              "download": "https://drive.google.com/uc?id=1Y_kANnz8gjulF3nD8BK6UgjdRpz3G5jp8gFVBL4E3Zw&export=download"
+            },
+            {
+              "nama": "WhatsApp Image 2025-11-26 at 18.08.10_c467ad08.jpg",
+              "tipe": "image/jpeg",
+              "id": "1RX37QnCTvzXllMzj4MuNUyxdbdeqgDx3",
+              "size": "145918",
+              "view": "https://drive.google.com/file/d/1RX37QnCTvzXllMzj4MuNUyxdbdeqgDx3/view?usp=drivesdk",
+              "download": "https://drive.google.com/uc?id=1RX37QnCTvzXllMzj4MuNUyxdbdeqgDx3&export=download"
+            }
+          ]
+        },
+        "whatsapp": {
+          "session": "KaweNia",
+          "chat_id": "6285230047347@c.us"
+        },
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Lambang_Kabupaten_Mimika.jpg/500px-Lambang_Kabupaten_Mimika.jpg",
+        "tombol": {
+          "kirim_surat": "https://n8n-qz8tp6856ibc.bgxy.sumopod.my.id/webhook/67db2099-31bd-4954-86d2-d3ae33521d63",
+          "edit_data": "https://n8n-qz8tp6856ibc.bgxy.sumopod.my.id/webhook/c451ac17-c90c-4993-b7ea-4f56e81f2b82",
+          "kirim_file": "https://n8n-qz8tp6856ibc.bgxy.sumopod.my.id/webhook/5e414b13-f018-40f4-bb3b-4f2135787cd9",
+          "hapus_file": "https://n8n-qz8tp6856ibc.bgxy.sumopod.my.id/webhook/86f330e8-889f-4859-83c1-65a82293ef6c",
+          "hapus_surat": "https://n8n-qz8tp6856ibc.bgxy.sumopod.my.id/webhook/67223375-6592-4e5d-92a3-46b8760b79e2"
+        }
+      },
+      "admin1": {
+        "status": "",
+        "tanggal": "27 November 2025",
+        "nomor_surat": "400.3.2.1/15/KI/DW/2025",
+        "id": {
+          "json": "1OqrOald59oTbRZQKh8ZpC6oOGG91uyq5",
+          "html": "18o1vyELSxHPj2SK30ThqN94-inY1ST7M",
+          "css": "1QfypqRQzW_JEo-R2-rZklqHNyNkSUeGa",
+          "javascript": "1b_otMda2fQD5luChgp--ulIIuUSE3YHk",
+          "folder": "1ixWleb0C-LQye7a6FUSZkHdQCd3MeAiH"
+        },
+        "data_surat": {
+          "kop": {
+            "pemerintah_kabupaten": "PEMERINTAH KABUPATEN MIMIKA",
+            "provinsi": "PAPUA TENGAH",
+            "distrik": "DISTRIK WANIA",
+            "kampung_kelurahan": "Kampung Nawaripi",
+            "alamat": "Jln. Yohanes Aikawe",
+            "kode_pos": "99963",
+            "email": "nawaripi@gmail.com"
+          },
+          "admin": {
+            "nama": "Norman Ditubun",
+            "jabatan": "Kepala Kampung",
+            "nip": "19740110 200605 1 003",
+            "id_tanda_tangan": "1i2KWvYMsHuS86LTfb5ncMPtBClSLAya4",
+            "nomor_hp": "6285230047347"
+          },
+          "keterangan_sktm": {
+            "keterangan_1": "Yang bertanda tangan dibawah ini Kepala Kampung Nawaripi menerangkan dengan sesungguhnya bahwa :",
+            "keterangan_2": "Tersebut namanya di atas adalah benar-benar penduduk Kampung Nawaripi.",
+            "keterangan_3": "Tersebut namanya di atas adalah benar-berstatus ekonomi lemah yang tidak mampu menebus atau membayar biaya untuk administrasi kampus politeknik amamapare timika",
+            "keterangan_4": "Mohon surat keterangan ini digunakan sebagaimana mestinya.",
+            "keterangan_5": "Demikian surat keterangan tidak mampu ini, kami buat untuk dapat digunakan sebagaimana  mestinya."
+          },
+          "dokumen": [
+            {
+              "nama": "KTP - Syafruddin",
+              "tipe": "image/jpeg",
+              "id": "1JJUFX1bEqDmt0_Qh-kfjM3Ynm17p00AU",
+              "size": "88330",
+              "view": "https://drive.google.com/file/d/1JJUFX1bEqDmt0_Qh-kfjM3Ynm17p00AU/view?usp=drivesdk",
+              "download": "https://drive.google.com/uc?id=1JJUFX1bEqDmt0_Qh-kfjM3Ynm17p00AU&export=download"
+            },
+            {
+              "nama": "Kartu Keluarga - Syafruddin",
+              "tipe": "image/jpeg",
+              "id": "1acIfBcH3Za7vPRpcum36INWQFjIEYNPw",
+              "size": "137745",
+              "view": "https://drive.google.com/file/d/1acIfBcH3Za7vPRpcum36INWQFjIEYNPw/view?usp=drivesdk",
+              "download": "https://drive.google.com/uc?id=1acIfBcH3Za7vPRpcum36INWQFjIEYNPw&export=download"
+            },
+            {
+              "nama": "Surat Pengantar RT - Syafruddin",
+              "tipe": "pdf",
+              "id": "1Y_kANnz8gjulF3nD8BK6UgjdRpz3G5jp8gFVBL4E3Zw",
+              "size": "187745",
+              "view": "https://drive.google.com/file/d/1Y_kANnz8gjulF3nD8BK6UgjdRpz3G5jp8gFVBL4E3Zw/view?usp=drivesdk",
+              "download": "https://drive.google.com/uc?id=1Y_kANnz8gjulF3nD8BK6UgjdRpz3G5jp8gFVBL4E3Zw&export=download"
+            },
+            {
+              "nama": "WhatsApp Image 2025-11-26 at 18.08.10_c467ad08.jpg",
+              "tipe": "image/jpeg",
+              "id": "19jpZODaIO_EMFnUYITnmQVlwqozaG1Lw",
+              "size": "145918",
+              "view": "https://drive.google.com/file/d/19jpZODaIO_EMFnUYITnmQVlwqozaG1Lw/view?usp=drivesdk",
+              "download": "https://drive.google.com/uc?id=19jpZODaIO_EMFnUYITnmQVlwqozaG1Lw&export=download"
+            }
+          ]
+        },
+        "whatsapp": {
+          "session": "KaweNia",
+          "chat_id": "6285230047347@c.us"
+        },
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Lambang_Kabupaten_Mimika.jpg/500px-Lambang_Kabupaten_Mimika.jpg",
+        "tombol": {
+          "kirim_surat": "https://n8n-qz8tp6856ibc.bgxy.sumopod.my.id/webhook/8fb57229-0fc5-4aaa-97d4-fd86e815001c",
+          "hapus_surat": "https://n8n-qz8tp6856ibc.bgxy.sumopod.my.id/webhook/935fa90a-a07d-45bb-9e13-ba23b07fdf52",
+          "kirim_pesan": "https://n8n-qz8tp6856ibc.bgxy.sumopod.my.id/webhook/93523123-ac4d-4hpb-9e13-bafeeft7fdf5"
+        }
+      },
+      "admin2": {
+        "status": "",
+        "tanggal": "",
+        "nomor_surat": "",
+        "id": {
+          "json": "",
+          "html": "",
+          "css": "",
+          "javascript": "",
+          "folder": ""
+        },
+        "data_surat": {
+          "kop": {
+            "pemerintah_kabupaten": "",
+            "provinsi": "",
+            "distrik": "",
+            "alamat": "",
+            "kode_pos": "",
+            "email": ""
+          },
+          "admin": {
+            "nama": "",
+            "jabatan": "",
+            "nip": "",
+            "id_tanda_tangan": "",
+            "nomor_hp": ""
+          },
+          "keterangan_sktm": {
+            "keterangan_1": "",
+            "keterangan_2": "",
+            "keterangan_3": "",
+            "keterangan_4": "",
+            "keterangan_5": ""
+          },
+          "dokumen": null
+        },
+        "whatsapp": {
+          "session": "",
+          "chat_id": ""
+        },
+        "logo": "",
+        "tombol": {
+          "kirim_surat": "",
+          "hapus_surat": ""
+        }
+      }
+    }
+  }
+]
