@@ -1,19 +1,27 @@
 /* ===== Utils ===== */
-function normalizeDocs(docs){
-  const arr=Array.isArray(docs)?docs.filter(Boolean):[];
-  const seen=new Set(); const out=[];
-  for(const d of arr){
-    const fid=d?.file_id||d?.id||d?.fileId||null;
-    const hasUrl=!!(d?.view_url||d?.download_url);
-    if(!fid && !hasUrl) continue;
-    const key=fid?`fid:${fid}`:`name:${(d?.name||d?.nama_file||'').toLowerCase()}|size:${d?.size||d?.ukuran||0}`;
-    if(seen.has(key)) continue; seen.add(key);
+function normalizeDocs(docs) {
+  const arr = Array.isArray(docs) ? docs.filter(Boolean) : [];
+  const seen = new Set();
+  const out = [];
+  
+  for (const d of arr) {
+    const fid = d?.file_id || d?.id || d?.fileId || null;
+    const hasUrl = !!(d?.view_url || d?.download_url);
+    if (!fid && !hasUrl) continue;
+    
+    const key = fid 
+      ? `fid:${fid}` 
+      : `name:${(d?.name || d?.nama_file || '').toLowerCase()}|size:${d?.size || d?.ukuran || 0}`;
+      
+    if (seen.has(key)) continue;
+    seen.add(key);
+    
     out.push({
-      label:d?.label??d?.name??d?.nama_file??'-',
-      name:d?.name??d?.nama_file??d?.label??'-',
-      file_id:fid,
-      view_url:d?.view_url??null,
-      download_url:d?.download_url??null,
+      label: d?.label ?? d?.name ?? d?.nama_file ?? '-',
+      name: d?.name ?? d?.nama_file ?? d?.label ?? '-',
+      file_id: fid,
+      view_url: d?.view_url ?? null,
+      download_url: d?.download_url ?? null,
       size: d?.size ?? d?.ukuran ?? null,
       mimeType: d?.mimeType ?? d?.tipe ?? d?.mime ?? null
     });
@@ -21,19 +29,25 @@ function normalizeDocs(docs){
   return out;
 }
 
-// Use functions from script.js via window object
-// These functions should be exposed by script.js
 // Helper to get function from window with better error handling
 function getWindowFunction(name, fallback = null) {
   return (...args) => {
-    if (window[name]) {
-      return window[name](...args);
+    try {
+      if (window[name]) {
+        const result = window[name](...args);
+        return result?.then ? result.catch(e => {
+          console.error(`Error in ${name}:`, e);
+          throw e;
+        }) : result;
+      }
+      if (fallback) {
+        return fallback(...args);
+      }
+      throw new Error(`${name} is not defined and no fallback provided`);
+    } catch (error) {
+      console.error(`Error in getWindowFunction(${name}):`, error);
+      throw error;
     }
-    if (fallback) {
-      return fallback(...args);
-    }
-    console.error(`${name} is not defined. Make sure script.js is loaded before actionHandlers.js`);
-    throw new Error(`${name} is not defined. Make sure script.js is loaded before actionHandlers.js`);
   };
 }
 
@@ -99,24 +113,10 @@ const showLoading = getWindowFunction('showLoading', (show, text) => {
   if (loadingText && text) loadingText.textContent = text;
   if (loadingOverlay) loadingOverlay.style.display = show ? 'flex' : 'none';
 });
-const sendJSON = getWindowFunction('sendJSON');
-const getWebhookUrl = getWindowFunction('getWebhookUrl');
 const baseHref = getWindowFunction('baseHref', () => location.href);
-const performDeleteAll = getWindowFunction('performDeleteAll');
 
 /* ===== Create / Delete Surat ===== */
 async function confirmCreateAndSend(obj = window.lastObj || {}){
-  const docs = normalizeDocs(obj?.dokumen || obj?.documents);
-  if(!docs || docs.length === 0){
-    await showModal({ 
-      icon: '⚠️', 
-      title: 'Belum Ada File yang Dilampirkan', 
-      message: 'Silakan upload minimal satu file pendukung sebelum membuat surat.', 
-      variant: 'danger', 
-      buttons: [{label: 'Tutup', variant: 'secondary', value: true}] 
-    });
-    return;
-  }
   const ok = await confirmModal(
     'Konfirmasi Pembuatan Surat',
     'Dengan menekan <b>Setujui & Proses</b>, sistem akan membuat dokumen berdasarkan data saat ini dan mengirimkannya.',
@@ -127,12 +127,21 @@ async function confirmCreateAndSend(obj = window.lastObj || {}){
 }
 
 async function generateAndSendLetter(){
-  try{
-    if(window.editMode && window.saveChanges) await window.saveChanges();
+  try {
+    if (window.editMode && window.saveChanges) await window.saveChanges();
     showLoading(true, 'Memproses pembuatan surat dan pengiriman data…');
-    await sendJSON('CREATE_AND_SEND');
-    await successModal('Surat Berhasil Dibuat', 'Data dan surat telah dikirim untuk verifikasi.');
-  }catch(e){
+    
+    if (window.ApiService) {
+      const result = await window.ApiService.sendLetter(window.lastObj || {});
+      if (result.success) {
+        await successModal('Surat Berhasil Dibuat', 'Data dan surat telah dikirim untuk verifikasi.');
+      } else {
+        throw new Error(result.error || 'Gagal mengirim surat');
+      }
+    } else {
+      throw new Error('ApiService tidak tersedia');
+    }
+  } catch(e) {
     await showModal({
       icon: '⚠️',
       title: 'Gagal Membuat Surat',
@@ -140,7 +149,7 @@ async function generateAndSendLetter(){
       variant: 'danger',
       buttons: [{label: 'Tutup', variant: 'secondary', value: true}]
     });
-  }finally{ 
+  } finally { 
     showLoading(false); 
   }
 }
@@ -161,20 +170,29 @@ async function confirmDeleteAll(){
 }
 
 async function deleteLetterAndData(){
-  try{
+  try {
     showLoading(true, 'Menghapus surat dan seluruh data terkait…');
-    await performDeleteAll();
-    await successModal('Penghapusan Berhasil', 'Surat dan seluruh data terkait telah dihapus dari sistem.');
-    location.reload();
-  }catch(e){
+    
+    if (window.ApiService) {
+      const result = await window.ApiService.deleteMessage(window.lastObj?.id);
+      if (result.success) {
+        await successModal('Penghapusan Berhasil', 'Surat dan seluruh data terkait telah dihapus dari sistem.');
+        location.reload();
+      } else {
+        throw new Error(result.error || 'Gagal menghapus surat');
+      }
+    } else {
+      throw new Error('ApiService tidak tersedia');
+    }
+  } catch(e) {
     await showModal({ 
       icon: '⚠️', 
       title: 'Gagal Menghapus', 
       message: `Terjadi kendala saat menghapus surat atau data.<br><span class="mono">${e.message || e}</span>`, 
       variant: 'danger', 
       buttons: [{label: 'Tutup', variant: 'secondary', value: true}] 
-    }).then(() => location.reload());
-  }finally{ 
+    });
+  } finally { 
     showLoading(false); 
   }
 }
@@ -274,13 +292,17 @@ async function showRejectModal(){
 /* ===== Process Reject with Note ===== */
 async function processRejectWithNote(noteText) {
   try {
-    // First send the note
-    showLoading(true, 'Mengirim catatan penolakan…');
+    showLoading(true, 'Mengirim catatan penolakan...');
     
-    const targetUrl = getWebhookUrl('SEND_MESSAGE');
-    const lastObj = window.lastObj || {};
-    const DATA_REF = window.DATA_REF || (window.fetchedData?.data_web?.admin1?.id?.json) || '';
-    
+    if (window.ApiService) {
+      const result = await window.ApiService.sendMessage(
+        `Catatan Penolakan: ${noteText}`,
+        window.lastObj?.admin_phone || '' // Replace with actual admin phone field
+      );
+      if (result.success) {
+        // Add this line to fix the try-catch structure
+      }
+    }
     if (targetUrl) {
       const payload = {
         action: 'SEND_MESSAGE',

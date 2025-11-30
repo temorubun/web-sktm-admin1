@@ -1,6 +1,7 @@
+// app.js
 window.META_CONFIG = window.META_CONFIG || {};
 
-// Import semua modul yang diperlukan
+// Import modules in the correct order
 import './config.js';
 import './render.js';
 import './fileHandling.js';
@@ -10,5 +11,3 @@ import './actionHandlers.js';
 
 
 
-// Inisialisasi aplikasi setelah semua modul dimuat
-document.addEventListener('DOMContentLoaded', () => {});

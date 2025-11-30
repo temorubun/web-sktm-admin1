@@ -111,26 +111,27 @@
   <div class="loading-overlay" id="loadingOverlay" aria-live="polite" aria-busy="true">
     <div class="loading-box">
       <div class="spinner" aria-hidden="true"></div>
-      <div class="loading-text" id="loadingText">Memuat data… Mohon menunggu.</div>
+      <div class="loading-text" id="loadingText"></div>
     </div>
   </div>
 
   <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" style="display: none;">
     <div class="modal modal--info" id="modalBox" role="document">
       <div class="modal-header">
-        <div class="modal-icon" id="modalIcon">ℹ️</div>
-        <div class="modal-title" id="modalTitle">Informasi</div>
+        <div class="modal-icon" id="modalIcon"></div>
+        <div class="modal-title" id="modalTitle"></div>
       </div>
       <div class="modal-body">
-        <div class="modal-message" id="modalMessage">Pesan…</div>
+        <div class="modal-message" id="modalMessage"></div>
       </div>
       <div class="modal-actions" id="modalActions">
-        <button class="btn secondary" id="modalCancelBtn">Batal</button>
-        <button class="btn primary" id="modalConfirmBtn">OK</button>
+        <button class="btn secondary" id="modalCancelBtn"></button>
+        <button class="btn primary" id="modalConfirmBtn"></button>
       </div>
     </div>
   </div>
-
-  <script type="module" src="./script/app.js"></script>
+<!-- <script type="module" src="loading.js"></script>
+<script type="module" src="script.js"></script> -->
+<script type="module" src="./app/main.js"></script>
 </body>
 </html>
