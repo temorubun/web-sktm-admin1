@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   window.getWebhookUrl = function(action = null){
-    if (!window.fetchedData || typeof window.fetchedData !== 'object') {
-      console.error('window.fetchedData tidak valid:', window.fetchedData);
+    if (!window.a || typeof window.a !== 'object') {
+      console.error('window.a tidak valid:', window.a);
       return null;
     }
 
-    const tombol = window.fetchedData?.data_web?.admin1?.tombol;
+    const tombol = window.a?.data_web?.admin1?.tombol;
     if (!tombol || typeof tombol !== 'object') {
       console.error('Konfigurasi tombol tidak ditemukan pada data_web.admin1.tombol');
       return null;

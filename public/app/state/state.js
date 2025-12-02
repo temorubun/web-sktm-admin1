@@ -1,46 +1,150 @@
 document.addEventListener('DOMContentLoaded', function() {
-  window.fetchedData = null;
+  window.a = null;
 
-  const encrypted = "w2uo5z_82_e3cad0b2e1cacfb4cefbbbe9e3daccb2e1efeef0e6b0c4f7e3d5c7f7dbb0bbf6ceb0f2f8e0b0b6f4cfd4d7b7d6d7d4c1d8efc4e3d6efd0d2dbd5e5f5d7f8c0d5e1d6eee3d5d5eac4d3d7eafbd8d5d0f4e1c7f2b1"; 
+  function b(c) {
+    if (Array.isArray(c)) {
+      return c[0] || {}; 
+    }
 
-  const parts = encrypted.split("_");
-  const key = parseInt(parts[1], 16);  
-  const hexData = parts[2];
+    if (c === null || c === undefined) {
+      return {};
+    }
 
-  const bytes = hexData.match(/.{2}/g).map(h => parseInt(h, 16));
-
-  let base64 = "";
-  for (let i = 0; i < bytes.length; i++) {
-    base64 += String.fromCharCode(bytes[i] ^ key);
+    return c;
   }
 
-  const url = atob(base64);
+  function d(data, key) {
+    if (!data || !key) {
+      console.error('Data dan key harus disediakan');
+      return null;
+    }
+    
+    const parts = data.split('_');
+    if (parts.length < 3) {
+      console.error('Format data tidak valid');
+      return null;
+    }
+    
+    const noise = parts[0];              
+    const keyLengthHex = parts[1];       
+    const hexEncrypted = parts[2];       
 
-  // Tampilkan loading saat mulai mengambil data awal
+    let xorResult = [];
+    for (let i = 0; i < hexEncrypted.length; i += 2) {
+      xorResult.push(parseInt(hexEncrypted.substr(i, 2), 16));
+    }
+
+    let baseDecoded = '';
+    for (let i = 0; i < xorResult.length; i++) {
+      let keyCharCode = key.charCodeAt(i % key.length);
+      let charCode = xorResult[i] ^ keyCharCode;
+      baseDecoded += String.fromCharCode(charCode);
+    }
+
+    try {
+      const decodedData = atob(baseDecoded);
+      try {
+        return JSON.parse(decodedData);
+      } catch (e) {
+        return decodedData;
+      }
+    } catch (e) {
+      console.error('Decryption error:', e);
+      return null;
+    }
+  }
+
+  function decryptWithoutKey(encrypted) {
+    if (!encrypted) {
+      console.error('Data harus disediakan');
+      return null;
+    }
+
+    try {
+      const parts = encrypted.split('_');
+      if (parts.length < 2) {
+        console.error('Format data tidak valid');
+        return null;
+      }
+      
+      const noise = parts[0];  
+      const base64Data = parts.slice(1).join('_');  
+      let decodedData = atob(base64Data);
+      try {
+        return JSON.parse(decodedData);
+      } catch (e) {
+        return decodedData;   
+      }
+    } catch (e) {
+      console.error('Dekripsi tanpa key gagal:', e);
+      return null;
+    }
+  }
+
+          
+  const m = "u0ch7y_21_781c013d7e332d51165d543d3b411e35370b1e0100333f1d2d193d6f3b0e332f18673f2014633e5e"; 
+  const n = "01bhg0_21_781b38287f2f2a531600543d3b43062d34351a0531563f1d1b083e5c";
+  const o = "9pcvex_21_781c0274543f211b3a055501381a3c37222916642a2c2b320735320423190931164844031e031f562d1b225c150d4923205c2025303d0f0c241e0e23515f220c390808070b3d08463a36385d372317071a2b5e411e38305535111b321b5f24003c0c06483f3974023a37280d2207146b3e6608053e14171f344b29220f01730310090e267f225b0d63200b2c2c3405250b243c3b3a400a11060915342a18215c3420026b2b75190526633e5e"; 
+
+  const u = document.querySelector('link[rel="stylesheet"]');
+  const v = u ? u.href : '';
+  const w = v.split('/').pop();
+
+  
+    const cssKey = w.split('.')[0];
+    
+      
+    const decryptedM = d(m, cssKey);
+    const decryptedN = d(n, cssKey);
+    const decryptedO = d(o, cssKey);
+    
+    const finalM = decryptWithoutKey(decryptedM);
+    const finalN = decryptWithoutKey(decryptedN);
+    const finalO = decryptedO;
+    
+      
+    console.log('Decrypted data using CSS key:', cssKey);
+    console.log('Decrypted m:', finalM);
+    console.log('Decrypted n:', finalN);
+    console.log('Decrypted o:', finalO);
+ 
+
+  const p = finalM;
+  
+  const q = finalN;
+  const r = finalO;
+  const s = r; 
+
   if (window.showLoading) {
     window.showLoading(true, 'Memuat data awal… Mohon menunggu.');
   }
 
-  fetch(url)
-    .then(r => {
-      if (!r.ok) {
-        console.error('Data gagal diambil. Kode HTTP:', r.status);
-        throw new Error('Gagal memuat data awal. Kode HTTP: ' + r.status);
+  const t = btoa(p + ':' + q);
+  
+  fetch(s, {
+    headers: {
+      'Authorization': 'Basic ' + t
+    }
+  })
+    .then(u => {
+      if (!u.ok) {
+        throw new Error('Gagal memuat data awal. Kode HTTP: ' + u.status);
       }
-      console.log('Data berhasil diambil dari server');
-      return r.json();
+      return u.json();
     })
-    .then(d => {
-      console.log('d', d);
-      window.fetchedData = d;
+    .then(v => {
+
+      const w = b(v);
+
+      window.a = w;
+
       window.dispatchEvent(new CustomEvent('dataReady'));
+
       if (window.showLoading) {
         window.showLoading(false);
       }
     })
-    .catch(err => {
-      console.error('Terjadi kesalahan saat memuat data awal:', err);
-      console.error('Data gagal diambil:', err.message);
+    .catch(x => {
       if (window.showLoading) {
         window.showLoading(false);
       }

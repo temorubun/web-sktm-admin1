@@ -1,7 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', function(){
   window.confirmCreateAndSend = async function(){
-    const data = window.fetchedData [0]|| {};
+    const data = window.a || {};
     const docs = data?.data_web?.admin1?.data_surat?.dokumen || [];
     if(!docs || docs.length === 0){
       await showModal({ 

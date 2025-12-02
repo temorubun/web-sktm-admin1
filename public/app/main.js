@@ -1,6 +1,3 @@
-// app.js
-window.META_CONFIG = window.META_CONFIG || {};
-
 // Import modules in the correct order
 import './state/state.js';
 
@@ -23,5 +20,5 @@ import './ui/upload.js';
 import './ui/loading.js';
 
 
-
+// tambahkan impornya di sini bukan di state
 

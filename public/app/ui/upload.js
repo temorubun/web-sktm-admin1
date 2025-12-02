@@ -19,7 +19,7 @@ if (!window.utils) {
 
 function initializeFileHandling() {
     try {
-        const data = window.fetchedData || {};
+        const data = window.a || {};
         const dokumen = data?.data_web?.admin1?.data_surat?.dokumen;
         
         if (Array.isArray(dokumen) && dokumen.length > 0) {

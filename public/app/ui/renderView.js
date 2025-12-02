@@ -1,5 +1,5 @@
 function loadApplicantData() {
-    const data = window.fetchedData [0]|| {};
+    const data = window.a|| {};
     const kop = data?.data_web?.admin1?.data_surat?.kop || {};
     const nomor_surat = data?.data_web?.admin1?.nomor_surat || '';
     const pemohon = data?.data_web?.user?.data_surat?.pemohon || {};
@@ -109,7 +109,7 @@ function loadApplicantData() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.fetchedData) {
+    if (window.a) {
         loadApplicantData();
     }
     window.addEventListener('dataReady', loadApplicantData);
